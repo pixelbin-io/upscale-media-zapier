@@ -40,7 +40,38 @@ const perform = async (z, bundle) => {
 	replacement += ")";
 
 	imagetobeTransformed = imagetobeTransformed.replace("original", replacement);
-	return { url: imagetobeTransformed };
+	// return { url: imagetobeTransformed };
+
+	// start
+	testImageUrl = {
+		url: imagetobeTransformed,
+		method: "GET",
+	};
+
+	let retries = 5;
+
+	async function getStatus() {
+		retries -= 1;
+		const response = await z.request(testImageUrl);
+
+		try {
+			statusCode = response.status;
+
+			if (statusCode === 200) {
+				return { url: imagetobeTransformed };
+			}
+			if (statusCode === 202) {
+				setTimeout(() => {
+					getStatus();
+				}, 5000);
+			} else throw reponse;
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	return getStatus();
+	// end
 };
 
 module.exports = {
