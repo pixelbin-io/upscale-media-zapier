@@ -10,16 +10,14 @@ const perform = async (z, bundle) => {
 				headers: {
 					accept: "application/json",
 					"Content-Type": "application/json",
-					// Add more headers as required
 				},
 				body: JSON.stringify({
 					url: bundle.inputData.url,
 					path: "/__zapier_Transfomation",
 					tags: bundle.inputData.tags,
-					// Assuming filename is static as per your example
-					access: "public-read", // Assuming access is static as per your example
-					metadata: {}, // Assuming metadata is empty as per your example
-					overwrite: true, // Use provided value or default to false
+					access: "public-read",
+					metadata: {},
+					overwrite: true,
 					filenameOverride: true,
 				}),
 			});
@@ -40,9 +38,6 @@ const perform = async (z, bundle) => {
 	replacement += ")";
 
 	imagetobeTransformed = imagetobeTransformed.replace("original", replacement);
-	// return { url: imagetobeTransformed };
-
-	// start
 	testImageUrl = {
 		url: imagetobeTransformed,
 		method: "GET",
@@ -80,7 +75,7 @@ module.exports = {
 
 	display: {
 		label: "Upscale Images",
-		description: "Creates a PixeBin.io URL of an upscaled image.",
+		description: "Transforms Image using Pixelbin.io",
 	},
 
 	operation: {
@@ -90,8 +85,8 @@ module.exports = {
 				key: "url",
 				required: true,
 				type: "string",
-				helpText:
-					"URL of the image to upload.(upto resolution 1,500 x 1,500 px)",
+				label: "Image/url",
+				helpText: "Image to be transformed.(upto resolution 1,500 x 1,500 px)",
 			},
 			{
 				key: "t",
