@@ -370,7 +370,7 @@ module.exports = {
 			},
 		],
 		test,
-		connectionLabel: "{{json.app.name}} ({{json.org.name}})",
+		connectionLabel: "{{json.app.name}}",
 	},
 	befores: [includeApiKey],
 	afters: [handleBadResponses],

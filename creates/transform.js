@@ -13,7 +13,7 @@ const perform = async (z, bundle) => {
 				},
 				body: JSON.stringify({
 					url: bundle.inputData.url,
-					path: "/__zapier_Transformation",
+					path: "/__zapier/transformations",
 					tags: bundle.inputData.tags,
 					access: "public-read",
 					metadata: {},
@@ -86,7 +86,8 @@ module.exports = {
 				required: true,
 				type: "string",
 				label: "Image/url",
-				helpText: "Image to be transformed.(upto resolution 1,500 x 1,500 px)",
+				helpText:
+					"Image to be transformed.(resolution above 64 x 64 and upto 1,500 x 1,500 px)",
 			},
 			{
 				key: "t",
@@ -116,5 +117,8 @@ module.exports = {
 				type: "boolean",
 			},
 		],
+		sample: {
+			url: "https://cdn.pixelbin.io/v2/muddy-lab-41820d/t.resize(w:128,h:128)/dummy_image.png",
+		},
 	},
 };
